@@ -18,7 +18,7 @@
 					</div>
 					<div class="column is-three-fifths"> 
 						<h1 class="title is-1">Log In to Texts</h1> 
-						<p v-if="error">{{error}}</p>>
+						<p v-if="error">{{error}}</p>
 						<div class="field">
 							<div class="control">
 								<input class="input" type="text" placeholder="Username" v-model="username">

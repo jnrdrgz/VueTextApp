@@ -24,7 +24,7 @@
 				<section class="hero is-primary">
 				<div class="hero-body">
 					<h1 class="title">
-					  TEXT
+						TEXT
 					</h1>
 					<h2 class="subtitle">
 						A test app made in Vue with a Flask API in the backend
@@ -52,7 +52,7 @@
 
 			<!-- third column -->
 			</div>		
-		 <!-- columns -->
+		<!-- columns -->
 		</div> 
 
 	<!-- conteiner -->
