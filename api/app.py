@@ -113,8 +113,34 @@ def get_text():
 		return jsonify({"msg": "error getting texts"}), 400
 
 	return jsonify(texts_dic), 200
- 	
-@app.route('/text/<user_id>', methods=['GET'])
+
+@app.route('/text/<text_id>', methods=['GET'])
+@jwt_required
+def get_text_id(text_id):
+	try:
+		texts = Text.query.filter_by(id=text_id)
+		texts_dic = [x.dictionarize() for x in texts]
+	except Exception as e:
+		print(e)
+		return jsonify({"msg": "error getting texts"}), 400
+
+	return jsonify(texts_dic), 200
+
+@app.route('/text/<text_id>', methods=['DELETE'])
+@jwt_required
+def delete_text(text_id):
+	try:
+		text = Text.query.filter_by(id=text_id).first()
+		db.session.delete(text)
+		db.session.commit()
+	except Exception as e:
+		print(e)
+		return jsonify({"msg": "error deleting texts"}), 400
+
+	return jsonify({"msg": "text deleted succesfully"}), 200
+
+
+@app.route('/<user_id>', methods=['GET'])
 @jwt_required
 def get_text_user(user_id):
 	try:
