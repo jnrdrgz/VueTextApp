@@ -6,7 +6,7 @@
 
 			<a class="button is-primary">Home</a><br>
 			<a class="button is-primary">Profile</a><br>
-			<a class="button is-primary">Log Out</a>
+			<button class="button is-primary" onclick="localStorage.removeItem('user-token');location.reload();">Log Out</button>
 
 			</div>
 
