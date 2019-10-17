@@ -45,6 +45,18 @@ export const getTextRoutine = () => new Promise(
 		}
 	)
 
+export const deleteTextRoutine = (text_id) => new Promise(
+		(resolve, reject) => {
+			axios({url: baseURL+"text/"+text_id, headers:{"Authorization" : "Bearer " + localStorage.getItem('user-token') }, method: 'DELETE' })
+			.then(resp => {
+				resolve(resp)
+			})
+			.catch(err => {
+				reject(err);
+			})
+		}
+	)
+
 export const postTextRoutine = (user_id, text) => new Promise(
 		(resolve, reject) => {
 			axios({url: baseURL+"text", headers:{"Authorization" : "Bearer " + localStorage.getItem('user-token') }, data: user_id, text, method: 'POST' })
@@ -57,9 +69,3 @@ export const postTextRoutine = (user_id, text) => new Promise(
 		}
 	)
 
-
-/*
-import {HTTP} from '../http-constants'
-
-HTTP.get(...).then(...).catch(...)
-*/

@@ -21,7 +21,7 @@
 					<!--{{created on}}-->
 					<time datetime="2016-1-1">{{text.texted_on}}</time>
 					<br>
-					<button v-if="user_id == text.user_id">ELIMINAR</button>
+					<button v-if="user_id == text.user_id" v-on:click="delete_text(text.id)">DELETE</button>
 				</div>
 			</div>
 		</div>
@@ -29,11 +29,25 @@
 
 </template>
 <script>
+	import {deleteTextRoutine} from '../http-constants'
+	
 	export default {
 		name: "ViewTextComponent",
 		props: ['texts'],
 		data: () => ({
 			user_id: localStorage.getItem('user-id')
 		}),
+		methods: {
+			delete_text: function(uid) {
+				deleteTextRoutine(uid)
+				.then( () => {
+					this.$router.go(0);
+				})
+				.catch( (err) => {
+					console.log("Error")
+					this.error = err
+				})
+			}
+		}
 	}	
 </script>
