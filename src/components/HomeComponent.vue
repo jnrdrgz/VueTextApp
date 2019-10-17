@@ -43,7 +43,10 @@
 			
 
 			<div class="column">
+				<SearchComponent/>
+				
 
+			<!-- third column -->
 			</div>		
 		 <!-- columns -->
 		</div> 
@@ -56,12 +59,14 @@
 	import {getTextRoutine} from '../http-constants'
 	import NewTextComponent from './NewTextComponent.vue'
 	import ViewTextComponent from './ViewTextComponent.vue'
+	import SearchComponent from './SearchComponent.vue'
 	
 	export default {
 		name: "HomeComponent",
 		components: {
 			NewTextComponent,
 			ViewTextComponent,
+			SearchComponent
 			//
 		}, 
 		data() {

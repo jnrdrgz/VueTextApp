@@ -20,6 +20,8 @@
 					<br>
 					<!--{{created on}}-->
 					<time datetime="2016-1-1">{{text.texted_on}}</time>
+					<br>
+					<button v-if="user_id == text.user_id">ELIMINAR</button>
 				</div>
 			</div>
 		</div>
@@ -29,6 +31,9 @@
 <script>
 	export default {
 		name: "ViewTextComponent",
-		props: ['texts']
+		props: ['texts'],
+		data: () => ({
+			user_id: localStorage.getItem('user-id')
+		}),
 	}	
 </script>
