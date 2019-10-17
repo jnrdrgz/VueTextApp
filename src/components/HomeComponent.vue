@@ -33,8 +33,14 @@
 				</section>
 
 				<!-- v-if text -->
-				<NewTextComponent/>
-				<ViewTextComponent :texts="texts"/>
+				<div v-if="texts">
+					<NewTextComponent/>
+					<ViewTextComponent :texts="texts"/>
+				</div>
+				<div v-else>
+					Log in or sing up to see other people texts!!!
+				</div>
+
 				<!-- v-if text -->
 				
 
