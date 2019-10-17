@@ -5,7 +5,7 @@
 			<div v-if="texts" class="column">
 
 			<a class="button is-primary">Home</a><br>
-			<a class="button is-primary">Profile</a><br>
+			<router-link :to="{ name: 'UserProfileComponent', params: { id: 123 }}" class="button is-primary">Profile</router-link><br>
 			<button class="button is-primary" onclick="localStorage.removeItem('user-token');location.reload();">Log Out</button>
 
 			</div>

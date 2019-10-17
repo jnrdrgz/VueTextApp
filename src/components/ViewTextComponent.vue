@@ -11,7 +11,7 @@
 						</div>
 						<div class="media-content">
 							<!--{{text.username}}-->
-							<p class="title is-4">{{text.username}}</p>
+							<router-link :to="{ name: 'UserProfileComponent', params: { id: text.user_id }}" class="title is-4">{{text.username}}</router-link><br>
 						</div>
 					</div>
 				<div class="content">
