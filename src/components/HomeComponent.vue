@@ -44,7 +44,10 @@
 
 			<div class="column">
 				<SearchComponent/>
+				<br>
 				<TrendsComponent/>
+				<br>
+				<UsersComponent/>
 				
 
 			<!-- third column -->
@@ -62,6 +65,7 @@
 	import ViewTextComponent from './ViewTextComponent.vue'
 	import SearchComponent from './SearchComponent.vue'
 	import TrendsComponent from './TrendsComponent.vue'
+	import UsersComponent from './UsersComponent.vue'
 	
 	export default {
 		name: "HomeComponent",
@@ -69,7 +73,8 @@
 			NewTextComponent,
 			ViewTextComponent,
 			SearchComponent,
-			TrendsComponent
+			TrendsComponent,
+			UsersComponent,
 			//
 		}, 
 		data() {
