@@ -72,3 +72,16 @@ export const postTextRoutine = (user_id, text) => new Promise(
 		}
 	)
 
+
+export const getTrendsRoutine = () => new Promise(
+		(resolve, reject) => {
+			axios({url: baseURL+"trends", method: 'GET' })
+			.then(resp => {
+				resolve(resp)
+			})
+			.catch(err => {
+				reject(err);
+			})
+		}
+	)
+

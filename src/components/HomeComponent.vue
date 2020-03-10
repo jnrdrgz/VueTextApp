@@ -51,7 +51,7 @@
 			<div class="column">
 				<SearchComponent/>
 				<br>
-				<TrendsComponent/>
+				<TrendsComponent :trends="trends"/>
 				<br>
 				<UsersComponent/>
 				
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-	import {getTextRoutine} from '../http-constants'
+	import {getTextRoutine, getTrendsRoutine} from '../http-constants'
 	import NewTextComponent from './NewTextComponent.vue'
 	import ViewTextComponent from './ViewTextComponent.vue'
 	import SearchComponent from './SearchComponent.vue'
@@ -83,18 +83,30 @@
 			UsersComponent,
 			//
 		}, 
-		data() {
+		data () {
 			return {
-				texts: ""
+				texts: "",
+				trends: "",
 			}
 		},
 		mounted () {
+
 			getTextRoutine().then( (r) => {
 					this.texts = r.data
+					//console.log(this.texts)
+
 				})
 				.catch( (err) => {
 					console.log(err)
+				});
+			
+			getTrendsRoutine().then( (r) => {
+					this.trends = r.data
 				})
+				.catch( (err) => {
+					console.log(err)
+				});
+
 		},
 	}
 
