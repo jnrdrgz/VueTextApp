@@ -1,0 +1,2 @@
+[Child 11214, MediaDecoderStateMachine #1] WARNING: Decoder=7fe94d4e5800 state=DECODING_METADATA Decode metadata failed, shutting down decoder: file /builds/worker/workspace/build/src/dom/media/MediaDecoderStateMachine.cpp, line 359
+[Child 11214, MediaDecoderStateMachine #1] WARNING: Decoder=7fe94d4e5800 Decode error: NS_ERROR_DOM_MEDIA_METADATA_ERR (0x806e0006) - static MP4Metadata::ResultAndByteBuffer mozilla::MP4Metadata::Metadata(mozilla::ByteStream *): Cannot parse metadata: file /builds/worker/workspace/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3358
