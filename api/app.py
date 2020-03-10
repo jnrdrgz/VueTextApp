@@ -19,6 +19,7 @@ db.init_app(app)
 CORS(app)
 
 ##to create access token
+##LOGIN ENDPOINT
 @app.route('/login', methods=['POST'])
 def login():
 	if not request.is_json:
@@ -44,8 +45,7 @@ def login():
 	access_token = create_access_token(identity=username)
 	return jsonify(user_id=u.id, access_token=access_token), 200
 
-#login 
-#
+##REGISTER ENDPOINT
 @app.route('/register', methods=['POST'])
 def register():
 	if not request.is_json:
@@ -72,6 +72,7 @@ def register():
 	return jsonify({"msg": "user created succesfully"}), 200
 
 
+##TEXT ENDPOINTS
 @app.route('/text', methods=['POST'])
 @jwt_required
 def post_text():
@@ -140,6 +141,7 @@ def delete_text(text_id):
 	return jsonify({"msg": "text deleted succesfully"}), 200
 
 
+##USER ENDPOINTS
 @app.route('/<user_id>', methods=['GET'])
 @jwt_required
 def get_text_user(user_id):
@@ -151,6 +153,33 @@ def get_text_user(user_id):
 		return jsonify({"msg": "error getting texts"}), 400
 
 	return jsonify(texts_dic), 200
+
+##TRENDS
+@app.route('/trends', methods=['GET'])
+def get_trends():
+	try:
+		texts = Text.query.order_by(Text.texted_on.desc()).all()
+		texts_dic = [x.dictionarize() for x in texts]
+		
+		all_words = " ".join([x["text"] for x in texts_dic]).split(" ")
+
+		dictionary_word_counter = {}
+		for word in all_words:
+			if not word in dictionary_word_counter:
+				dictionary_word_counter[word] = 1
+			else:
+				dictionary_word_counter[word] += 1
+
+		list_dictionary = [(x, dictionary_word_counter[x]) for x in dictionary_word_counter]
+		list_dictionary = sorted(list_dictionary, key=lambda x : x[1], reverse=True)
+
+		final_list_of_trends = [{"word": x[0], "ind": i+1} for i, x in enumerate(list_dictionary[:5])]
+
+	except Exception as e:
+		print(e)
+		return jsonify({"msg": "error getting trends"}), 400
+
+	return jsonify(final_list_of_trends), 200
 
 
 #test if running
@@ -187,7 +216,7 @@ def doc():
 		/test_running 	-		return json with fields is_running and appname<br>
 		/text 			POST 	required json 	params:user_id/text<br>
 		/text 			GET 	return json list of texts, each text  has -> {user_id text texted_on}<br>
-		/text/<user_id> GET 	required json 	params in url user_id returns json list<br>
+		/text/<text_id> DELETE 	delete text<br>
 	'''
 
 if __name__ == '__main__':
